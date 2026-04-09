@@ -22,8 +22,8 @@ class RemoteImp(
         return SearchCityResult(
             name = name ?: city ?: "",
             country = country ?: "",
-            lat = 0.0,
-            lon = 0.0
+            lat = latitude ?: 0.0,
+            lon = longitude ?: 0.0
         )
     }
 
@@ -49,7 +49,13 @@ class RemoteImp(
     }
 
     override suspend fun checkWeatherForCity(city: SearchCityResult): RemoteResult<WeatherResult> {
-        val remoteCity = City(city = city.name, name = city.name, country = city.country)
+        val remoteCity = City(
+            city = city.name,
+            name = city.name,
+            country = city.country,
+            latitude = city.lat,
+            longitude = city.lon
+        )
         val result = cityRemote.getCityWeather(remoteCity)
         val remoteResult = when (result) {
             is CityScoutRemoteResult.Failure -> Error(result.description)
