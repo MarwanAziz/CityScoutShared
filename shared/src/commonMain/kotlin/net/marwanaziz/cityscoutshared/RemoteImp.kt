@@ -5,6 +5,8 @@ import net.marwanaziz.cityscoutremote.CityScoutRemote
 import net.marwanaziz.cityscoutremote.CityScoutRemoteApiKeys
 import net.marwanaziz.cityscoutremote.CityScoutRemoteFactory
 import net.marwanaziz.cityscoutremote.CityScoutRemoteResult
+import net.marwanaziz.cityscoutremote.Current
+import net.marwanaziz.cityscoutremote.Forecast
 import net.marwanaziz.cityscoutremote.Weather
 import net.marwanaziz.cityscoutshared.RemoteResult.*
 
@@ -38,13 +40,63 @@ class RemoteImp(
         return remoteResult
     }
 
+    private fun Current.mapToCurrentWeather(): CurrentWeather {
+        return CurrentWeather(
+            condition = WeatherCondition(
+                text = this.condition?.text,
+                icon = this.condition?.icon,
+                code = this.condition?.code
+            ),
+            tempC = this.tempC,
+            tempF = this.tempF,
+            humidity = this.humidity,
+            windMph = this.windMph,
+            windKph = this.windKph,
+            windDir = this.windDir,
+            feelslikeC = this.feelslikeC,
+            feelslikeF = this.feelslikeF,
+            visiMiles = this.visMiles,
+            visiKm = this.visKm,
+            isDay = this.isDay,
+            cloud = this.cloud
+        )
+    }
+
+    private fun Forecast.mapToWeatherForecast(): WeatherForecast {
+        val forecasts: MutableList<WeatherDay?> = mutableListOf()
+        for (forecast in this.forecastday) {
+            val dayForecast = WeatherDay(
+                date = forecast?.dateEpoch,
+                maxtempC = forecast?.day?.maxtempC,
+                maxtempF = forecast?.day?.maxtempF,
+                mintempC = forecast?.day?.mintempC,
+                mintempF = forecast?.day?.mintempF,
+                humidity = forecast?.day?.avghumidity,
+                windMph = forecast?.day?.maxwindMph,
+                windKph = forecast?.day?.maxwindKph,
+                windDir = "",
+                condition = WeatherCondition(
+                    text = forecast?.day?.condition?.text,
+                    icon = forecast?.day?.condition?.icon,
+                    code = forecast?.day?.condition?.code
+                )
+            )
+            forecasts.add(dayForecast)
+        }
+        return WeatherForecast(forecasts)
+    }
+
+
     private fun Weather.mapToWeatherResult(): WeatherResult {
-        val cityLocation = location
         return WeatherResult(
-            name = cityLocation?.name ?: "",
-            country = cityLocation?.country ?: "",
-            lat = cityLocation?.lat ?: 0.0,
-            lon = cityLocation?.lon ?: 0.0
+            city = this.location?.name ?: "",
+            country = this.location?.country ?: "",
+            lat = this.location?.lat ?: 0.0,
+            lon = this.location?.lon ?: 0.0,
+            weather = WeatherAndForecast (
+                this.current?.mapToCurrentWeather(),
+                this.forecast?.mapToWeatherForecast()
+            )
         )
     }
 

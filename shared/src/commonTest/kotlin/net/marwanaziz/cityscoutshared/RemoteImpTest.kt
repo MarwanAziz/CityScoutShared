@@ -65,7 +65,16 @@ class RemoteImpTest {
         val result = remote.checkWeatherForCity(SearchCityResult("Cairo", "Egypt", 0.0, 0.0))
 
         val success = assertIs<RemoteResult.Success<WeatherResult>>(result)
-        assertEquals(WeatherResult("Cairo", "Egypt", 30.0, 31.0), success.data)
+        assertEquals(
+            WeatherResult(
+                city = "Cairo",
+                country = "Egypt",
+                lat = 30.0,
+                lon = 31.0,
+                weather = WeatherAndForecast(current = null, forecast = null),
+            ),
+            success.data,
+        )
     }
 
     @Test
