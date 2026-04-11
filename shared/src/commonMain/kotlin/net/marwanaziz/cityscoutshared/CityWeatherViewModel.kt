@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface CityWeatherViewModel {
     val remote: Remote
-    val cityScoutLocal: CityScoutLocal
     val title: StateFlow<String>
     val country: StateFlow<String>
     val weatherConditionText: StateFlow<String>

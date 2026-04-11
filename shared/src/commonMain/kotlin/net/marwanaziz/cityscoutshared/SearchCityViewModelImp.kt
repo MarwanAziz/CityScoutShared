@@ -3,7 +3,7 @@ package net.marwanaziz.cityscoutshared
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class SearchCityViewModelImp(
+internal class SearchCityViewModelImp(
     override val remote: Remote,
 ): SearchCityViewModel {
     private val _searchCityResult = MutableStateFlow<List<SearchCityResult>>(emptyList())

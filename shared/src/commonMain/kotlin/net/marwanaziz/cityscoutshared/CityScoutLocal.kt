@@ -1,6 +1,6 @@
 package net.marwanaziz.cityscoutshared
 
-interface CityScoutLocal {
+internal interface CityScoutLocal {
     val isImperialLocale: Boolean
     val dateUtility: DateUtility
 }

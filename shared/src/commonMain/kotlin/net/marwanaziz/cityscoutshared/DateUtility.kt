@@ -4,7 +4,7 @@ interface DateUtility {
     fun dayOfWeekFromEpoch(epochSeconds: Int?): String
 }
 
-class DateUtilityImp(
+internal class DateUtilityImp(
     private val dateLocaleProvider: DateLocaleProvider = DateLocaleProviderImp(),
 ) : DateUtility {
 

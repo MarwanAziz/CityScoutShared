@@ -10,7 +10,7 @@ import net.marwanaziz.cityscoutremote.Forecast
 import net.marwanaziz.cityscoutremote.Weather
 import net.marwanaziz.cityscoutshared.RemoteResult.*
 
-class RemoteImp(
+internal class RemoteImp(
     override val remoteKeys: RemoteKeys,
     private val cityRemote: CityScoutRemote = CityScoutRemoteFactory.create(
         CityScoutRemoteApiKeys(
