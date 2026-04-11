@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinNativecoroutines)
 }
 
 kotlin {
@@ -29,6 +30,7 @@ kotlin {
             // put your Multiplatform dependencies here
             implementation(libs.cityScoutRemote)
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinNativecoroutinesCore)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlin.math.roundToInt
 
 internal class CityWeatherViewModelImp(
-    override val remote: Remote = RemoteImp(RemoteKeys),
+    val remote: Remote = RemoteImp(RemoteKeys),
     val cityScoutLocal: CityScoutLocal = CityScoutLocalImp()
 ) : CityWeatherViewModel {
     private val _title = MutableStateFlow("")

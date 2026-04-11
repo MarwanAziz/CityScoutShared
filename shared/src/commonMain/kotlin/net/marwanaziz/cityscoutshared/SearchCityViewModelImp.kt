@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 internal class SearchCityViewModelImp(
-    override val remote: Remote,
+    val remote: Remote,
 ): SearchCityViewModel {
     private val _searchCityResult = MutableStateFlow<List<SearchCityResult>>(emptyList())
     override val searchCityResult = _searchCityResult.asStateFlow()
