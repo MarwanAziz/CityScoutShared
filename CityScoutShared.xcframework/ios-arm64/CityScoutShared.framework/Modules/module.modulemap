@@ -1,0 +1,8 @@
+framework module "CityScoutShared" {
+    umbrella header "CityScoutShared.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}
