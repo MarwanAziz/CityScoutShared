@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class CSSCityScoutFactory, CSSCurrentWeather, CSSKotlinArray<T>, CSSKotlinException, CSSKotlinIllegalStateException, CSSKotlinNothing, CSSKotlinRuntimeException, CSSKotlinThrowable, CSSRemoteKeys, CSSRemoteResult<__covariant T>, CSSRemoteResultError, CSSRemoteResultSuccess<T>, CSSSearchCityResult, CSSWeatherAndForecast, CSSWeatherCondition, CSSWeatherDay, CSSWeatherForecast, CSSWeatherResult;
+@class CSSCityScoutFactory, CSSCurrentWeather, CSSKotlinArray<T>, CSSKotlinException, CSSKotlinIllegalStateException, CSSKotlinNothing, CSSKotlinRuntimeException, CSSKotlinThrowable, CSSKotlinUnit, CSSRemoteKeys, CSSRemoteResult<__covariant T>, CSSRemoteResultError, CSSRemoteResultSuccess<T>, CSSSearchCityResult, CSSWeatherAndForecast, CSSWeatherCondition, CSSWeatherDay, CSSWeatherForecast, CSSWeatherResult, NSError;
 
-@protocol CSSCityWeatherViewModel, CSSKotlinIterator, CSSKotlinx_coroutines_coreFlow, CSSKotlinx_coroutines_coreFlowCollector, CSSKotlinx_coroutines_coreSharedFlow, CSSKotlinx_coroutines_coreStateFlow, CSSPlatform, CSSRemote, CSSSearchCityViewModel;
+@protocol CSSCityWeatherViewModel, CSSKotlinIterator, CSSKotlinx_coroutines_coreFlow, CSSKotlinx_coroutines_coreFlowCollector, CSSKotlinx_coroutines_coreSharedFlow, CSSKotlinx_coroutines_coreStateFlow, CSSPlatform, CSSRemote, CSSSearchCityViewModel, CSSWeatherForecastViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -159,27 +159,34 @@ __attribute__((swift_name("CityScoutFactory")))
 __attribute__((swift_name("CityWeatherViewModel")))
 @protocol CSSCityWeatherViewModel
 @required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)checkWeatherCity:(CSSSearchCityResult *)city completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("checkWeather(city:completionHandler:)")));
+- (CSSKotlinUnit *(^(^)(CSSKotlinUnit *(^)(CSSKotlinUnit *, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void))checkWeatherCity:(CSSSearchCityResult *)city __attribute__((swift_name("checkWeather(city:)")));
 - (void)toggleTemperatureFormat __attribute__((swift_name("toggleTemperatureFormat()")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> country __attribute__((swift_name("country")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> forecasts __attribute__((swift_name("forecasts")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> isCelsius __attribute__((swift_name("isCelsius")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> loading __attribute__((swift_name("loading")));
-@property (readonly) id<CSSRemote> remote __attribute__((swift_name("remote")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> title __attribute__((swift_name("title")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionIcon __attribute__((swift_name("weatherConditionIcon")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionText __attribute__((swift_name("weatherConditionText")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherError __attribute__((swift_name("weatherError")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherFeelsLike __attribute__((swift_name("weatherFeelsLike")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherHumidity __attribute__((swift_name("weatherHumidity")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherTemp __attribute__((swift_name("weatherTemp")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherVisibility __attribute__((swift_name("weatherVisibility")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherWindSpeed __attribute__((swift_name("weatherWindSpeed")));
+@property (readonly) CSSKotlinUnit *(^(^country)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("country")));
+@property (readonly) NSString *countryValue __attribute__((swift_name("countryValue")));
+@property (readonly) CSSKotlinUnit *(^(^forecasts)(CSSKotlinUnit *(^)(NSArray<id<CSSWeatherForecastViewModel>> *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("forecasts")));
+@property (readonly) NSArray<id<CSSWeatherForecastViewModel>> *forecastsValue __attribute__((swift_name("forecastsValue")));
+@property (readonly) CSSKotlinUnit *(^(^isCelsius)(CSSKotlinUnit *(^)(CSSBoolean *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("isCelsius")));
+@property (readonly) BOOL isCelsiusValue __attribute__((swift_name("isCelsiusValue")));
+@property (readonly) CSSKotlinUnit *(^(^loading)(CSSKotlinUnit *(^)(CSSBoolean *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("loading")));
+@property (readonly) BOOL loadingValue __attribute__((swift_name("loadingValue")));
+@property (readonly) CSSKotlinUnit *(^(^title)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("title")));
+@property (readonly) NSString *titleValue __attribute__((swift_name("titleValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherConditionIcon)(CSSKotlinUnit *(^)(NSString * _Nullable, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherConditionIcon")));
+@property (readonly) NSString * _Nullable weatherConditionIconValue __attribute__((swift_name("weatherConditionIconValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherConditionText)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherConditionText")));
+@property (readonly) NSString *weatherConditionTextValue __attribute__((swift_name("weatherConditionTextValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherError)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherError")));
+@property (readonly) NSString *weatherErrorValue __attribute__((swift_name("weatherErrorValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherFeelsLike)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherFeelsLike")));
+@property (readonly) NSString *weatherFeelsLikeValue __attribute__((swift_name("weatherFeelsLikeValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherHumidity)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherHumidity")));
+@property (readonly) NSString *weatherHumidityValue __attribute__((swift_name("weatherHumidityValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherTemp)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherTemp")));
+@property (readonly) NSString *weatherTempValue __attribute__((swift_name("weatherTempValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherVisibility)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherVisibility")));
+@property (readonly) NSString *weatherVisibilityValue __attribute__((swift_name("weatherVisibilityValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherWindSpeed)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherWindSpeed")));
+@property (readonly) NSString *weatherWindSpeedValue __attribute__((swift_name("weatherWindSpeedValue")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -297,16 +304,13 @@ __attribute__((swift_name("SearchCityResult")))
 __attribute__((swift_name("SearchCityViewModel")))
 @protocol CSSSearchCityViewModel
 @required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)searchCityCity:(NSString *)city completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("searchCity(city:completionHandler:)")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> loading __attribute__((swift_name("loading")));
-@property (readonly) id<CSSRemote> remote __attribute__((swift_name("remote")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> searchCityResult __attribute__((swift_name("searchCityResult")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> searchError __attribute__((swift_name("searchError")));
+- (CSSKotlinUnit *(^(^)(CSSKotlinUnit *(^)(CSSKotlinUnit *, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void))searchCityCity:(NSString *)city __attribute__((swift_name("searchCity(city:)")));
+@property (readonly) CSSKotlinUnit *(^(^loading)(CSSKotlinUnit *(^)(CSSBoolean *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("loading")));
+@property (readonly) BOOL loadingValue __attribute__((swift_name("loadingValue")));
+@property (readonly) CSSKotlinUnit *(^(^searchCityResult)(CSSKotlinUnit *(^)(NSArray<CSSSearchCityResult *> *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("searchCityResult")));
+@property (readonly) NSArray<CSSSearchCityResult *> *searchCityResultValue __attribute__((swift_name("searchCityResultValue")));
+@property (readonly) CSSKotlinUnit *(^(^searchError)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("searchError")));
+@property (readonly) NSString *searchErrorValue __attribute__((swift_name("searchErrorValue")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -369,13 +373,13 @@ __attribute__((swift_name("WeatherForecastViewModel")))
 @protocol CSSWeatherForecastViewModel
 @required
 @property (readonly) NSString *dayOfWeek __attribute__((swift_name("dayOfWeek")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionIcon __attribute__((swift_name("weatherConditionIcon")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionText __attribute__((swift_name("weatherConditionText")));
+@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionIcon_ __attribute__((swift_name("weatherConditionIcon_")));
+@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionText_ __attribute__((swift_name("weatherConditionText_")));
 @property (readonly) CSSWeatherAndForecast * _Nullable weatherForecast __attribute__((swift_name("weatherForecast")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherHumidity __attribute__((swift_name("weatherHumidity")));
+@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherHumidity_ __attribute__((swift_name("weatherHumidity_")));
 @property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherMaxTemp __attribute__((swift_name("weatherMaxTemp")));
 @property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherMinTemp __attribute__((swift_name("weatherMinTemp")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherWindSpeed __attribute__((swift_name("weatherWindSpeed")));
+@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherWindSpeed_ __attribute__((swift_name("weatherWindSpeed_")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -410,6 +414,16 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Platform_iosKt")))
 @interface CSSPlatform_iosKt : CSSBase
 + (id<CSSPlatform>)getPlatform __attribute__((swift_name("getPlatform()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinUnit")))
+@interface CSSKotlinUnit : CSSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)unit __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CSSKotlinUnit *shared __attribute__((swift_name("shared")));
+- (NSString *)description __attribute__((swift_name("description()")));
 @end
 
 __attribute__((swift_name("KotlinThrowable")))
@@ -473,6 +487,11 @@ __attribute__((swift_name("KotlinCancellationException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(CSSKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinNothing")))
+@interface CSSKotlinNothing : CSSBase
+@end
+
 __attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
 @protocol CSSKotlinx_coroutines_coreFlow
 @required
@@ -484,21 +503,26 @@ __attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
 - (void)collectCollector:(id<CSSKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
 @end
 
+
+/**
+ * @note annotations
+ *   kotlin.SubclassOptInRequired(markerClass=[NormalClass(value=kotlinx/coroutines/ExperimentalForInheritanceCoroutinesApi)])
+*/
 __attribute__((swift_name("Kotlinx_coroutines_coreSharedFlow")))
 @protocol CSSKotlinx_coroutines_coreSharedFlow <CSSKotlinx_coroutines_coreFlow>
 @required
 @property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
 @end
 
+
+/**
+ * @note annotations
+ *   kotlin.SubclassOptInRequired(markerClass=[NormalClass(value=kotlinx/coroutines/ExperimentalForInheritanceCoroutinesApi)])
+*/
 __attribute__((swift_name("Kotlinx_coroutines_coreStateFlow")))
 @protocol CSSKotlinx_coroutines_coreStateFlow <CSSKotlinx_coroutines_coreSharedFlow>
 @required
 @property (readonly) id _Nullable value __attribute__((swift_name("value")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinNothing")))
-@interface CSSKotlinNothing : CSSBase
 @end
 
 __attribute__((objc_subclassing_restricted))
