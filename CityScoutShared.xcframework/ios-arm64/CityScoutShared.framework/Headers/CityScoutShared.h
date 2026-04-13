@@ -8,7 +8,7 @@
 
 @class CSSCityScoutFactory, CSSCurrentWeather, CSSKotlinArray<T>, CSSKotlinException, CSSKotlinIllegalStateException, CSSKotlinNothing, CSSKotlinRuntimeException, CSSKotlinThrowable, CSSKotlinUnit, CSSRemoteKeys, CSSRemoteResult<__covariant T>, CSSRemoteResultError, CSSRemoteResultSuccess<T>, CSSSearchCityResult, CSSWeatherAndForecast, CSSWeatherCondition, CSSWeatherDay, CSSWeatherForecast, CSSWeatherResult, NSError;
 
-@protocol CSSCityWeatherViewModel, CSSKotlinIterator, CSSKotlinx_coroutines_coreFlow, CSSKotlinx_coroutines_coreFlowCollector, CSSKotlinx_coroutines_coreSharedFlow, CSSKotlinx_coroutines_coreStateFlow, CSSPlatform, CSSRemote, CSSSearchCityViewModel, CSSWeatherForecastViewModel;
+@protocol CSSCityWeatherViewModel, CSSKotlinIterator, CSSPlatform, CSSRemote, CSSSearchCityViewModel, CSSWeatherForecastViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -373,13 +373,13 @@ __attribute__((swift_name("WeatherForecastViewModel")))
 @protocol CSSWeatherForecastViewModel
 @required
 @property (readonly) NSString *dayOfWeek __attribute__((swift_name("dayOfWeek")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionIcon_ __attribute__((swift_name("weatherConditionIcon_")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherConditionText_ __attribute__((swift_name("weatherConditionText_")));
+@property (readonly) NSString * _Nullable weatherConditionIcon_ __attribute__((swift_name("weatherConditionIcon_")));
+@property (readonly) NSString *weatherConditionText_ __attribute__((swift_name("weatherConditionText_")));
 @property (readonly) CSSWeatherAndForecast * _Nullable weatherForecast __attribute__((swift_name("weatherForecast")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherHumidity_ __attribute__((swift_name("weatherHumidity_")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherMaxTemp __attribute__((swift_name("weatherMaxTemp")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherMinTemp __attribute__((swift_name("weatherMinTemp")));
-@property (readonly) id<CSSKotlinx_coroutines_coreStateFlow> weatherWindSpeed_ __attribute__((swift_name("weatherWindSpeed_")));
+@property (readonly) NSString *weatherHumidity_ __attribute__((swift_name("weatherHumidity_")));
+@property (readonly) NSString *weatherMaxTemp __attribute__((swift_name("weatherMaxTemp")));
+@property (readonly) NSString *weatherMinTemp __attribute__((swift_name("weatherMinTemp")));
+@property (readonly) NSString *weatherWindSpeed_ __attribute__((swift_name("weatherWindSpeed_")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -492,39 +492,6 @@ __attribute__((swift_name("KotlinNothing")))
 @interface CSSKotlinNothing : CSSBase
 @end
 
-__attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
-@protocol CSSKotlinx_coroutines_coreFlow
-@required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)collectCollector:(id<CSSKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
-@end
-
-
-/**
- * @note annotations
- *   kotlin.SubclassOptInRequired(markerClass=[NormalClass(value=kotlinx/coroutines/ExperimentalForInheritanceCoroutinesApi)])
-*/
-__attribute__((swift_name("Kotlinx_coroutines_coreSharedFlow")))
-@protocol CSSKotlinx_coroutines_coreSharedFlow <CSSKotlinx_coroutines_coreFlow>
-@required
-@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
-@end
-
-
-/**
- * @note annotations
- *   kotlin.SubclassOptInRequired(markerClass=[NormalClass(value=kotlinx/coroutines/ExperimentalForInheritanceCoroutinesApi)])
-*/
-__attribute__((swift_name("Kotlinx_coroutines_coreStateFlow")))
-@protocol CSSKotlinx_coroutines_coreStateFlow <CSSKotlinx_coroutines_coreSharedFlow>
-@required
-@property (readonly) id _Nullable value __attribute__((swift_name("value")));
-@end
-
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinArray")))
 @interface CSSKotlinArray<T> : CSSBase
@@ -535,17 +502,6 @@ __attribute__((swift_name("KotlinArray")))
 - (id<CSSKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
 @property (readonly) int32_t size __attribute__((swift_name("size")));
-@end
-
-__attribute__((swift_name("Kotlinx_coroutines_coreFlowCollector")))
-@protocol CSSKotlinx_coroutines_coreFlowCollector
-@required
-
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)emitValue:(id _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
 @end
 
 __attribute__((swift_name("KotlinIterator")))
