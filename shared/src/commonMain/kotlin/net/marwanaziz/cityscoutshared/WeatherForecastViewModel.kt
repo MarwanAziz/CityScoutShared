@@ -4,11 +4,11 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface WeatherForecastViewModel {
     val weatherForecast: WeatherAndForecast?
-    val weatherConditionText: StateFlow<String>
-    val weatherConditionIcon: StateFlow<String?>
-    val weatherMaxTemp: StateFlow<String>
-    val weatherMinTemp: StateFlow<String>
-    val weatherHumidity: StateFlow<String>
-    val weatherWindSpeed: StateFlow<String>
+    val weatherConditionText: String
+    val weatherConditionIcon: String?
+    val weatherMaxTemp: String
+    val weatherMinTemp: String
+    val weatherHumidity: String
+    val weatherWindSpeed: String
     val dayOfWeek: String
 }

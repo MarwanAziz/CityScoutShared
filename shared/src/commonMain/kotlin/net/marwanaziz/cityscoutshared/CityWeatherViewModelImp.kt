@@ -79,20 +79,12 @@ internal class CityWeatherViewModelImp(
     ): WeatherForecastViewModel {
         return object : WeatherForecastViewModel {
             override val weatherForecast: WeatherAndForecast? = weather
-            override val weatherConditionText = MutableStateFlow(day.condition?.text.orEmpty()).asStateFlow()
-            override val weatherConditionIcon = MutableStateFlow(day.condition?.icon).asStateFlow()
-            override val weatherMaxTemp = MutableStateFlow(
-                buildTemperatureLabel(day.maxtempC, day.maxtempF, useCelsius)
-            ).asStateFlow()
-            override val weatherMinTemp = MutableStateFlow(
-                buildTemperatureLabel(day.mintempC, day.mintempF, useCelsius)
-            ).asStateFlow()
-            override val weatherHumidity = MutableStateFlow(
-                buildHumidityLabel(day.humidity)
-            ).asStateFlow()
-            override val weatherWindSpeed = MutableStateFlow(
-                buildWindLabel(day.windKph, day.windMph, useImperial)
-            ).asStateFlow()
+            override val weatherConditionText = day.condition?.text.orEmpty()
+            override val weatherConditionIcon = day.condition?.icon
+            override val weatherMaxTemp = buildTemperatureLabel(day.maxtempC, day.maxtempF, useCelsius)
+            override val weatherMinTemp = buildTemperatureLabel(day.mintempC, day.mintempF, useCelsius)
+            override val weatherHumidity= buildHumidityLabel(day.humidity)
+            override val weatherWindSpeed= buildWindLabel(day.windKph, day.windMph, useImperial)
             override val dayOfWeek: String = cityScoutLocal.dateUtility.dayOfWeekFromEpoch(day.date)
         }
     }
