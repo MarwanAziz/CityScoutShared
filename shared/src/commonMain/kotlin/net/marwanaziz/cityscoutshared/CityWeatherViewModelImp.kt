@@ -110,14 +110,14 @@ internal class CityWeatherViewModelImp(
     }
 
     private fun buildWindLabel(kph: Double?, mph: Double?, imperial: Boolean): String {
-        val speed = if (imperial) mph else kph
-        val unit = if (imperial) "mph" else "km/h"
+        val speed = if (imperial) kph else mph
+        val unit = if (imperial) "km/h" else "mph"
         return if (speed == null) "" else "${speed.roundToInt()} $unit"
     }
 
     private fun buildVisibilityLabel(km: Double?, miles: Double?, imperial: Boolean): String {
-        val visibility = if (imperial) miles else km
-        val unit = if (imperial) "mi" else "km"
+        val visibility = if (imperial) km else miles
+        val unit = if (imperial) "km" else "mi"
         return if (visibility == null) "" else "${visibility.roundToInt()} $unit"
     }
 

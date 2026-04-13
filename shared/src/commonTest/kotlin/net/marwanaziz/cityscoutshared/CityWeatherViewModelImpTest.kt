@@ -28,8 +28,8 @@ class CityWeatherViewModelImpTest {
         assertEquals("20°C", viewModel.weatherTemp.value)
         assertEquals("Feels like 19°C", viewModel.weatherFeelsLike.value)
         assertEquals("50%", viewModel.weatherHumidity.value)
-        assertEquals("16 km/h", viewModel.weatherWindSpeed.value)
-        assertEquals("10 km", viewModel.weatherVisibility.value)
+        assertEquals("10 mph", viewModel.weatherWindSpeed.value)
+        assertEquals("6 mi", viewModel.weatherVisibility.value)
         assertEquals("", viewModel.weatherError.value)
         assertFalse(viewModel.loading.value)
         assertTrue(viewModel.isCelsius.value)
@@ -39,7 +39,7 @@ class CityWeatherViewModelImpTest {
         assertEquals("25°C", forecast.weatherMaxTemp)
         assertEquals("15°C", forecast.weatherMinTemp)
         assertEquals("60%", forecast.weatherHumidity)
-        assertEquals("20 km/h", forecast.weatherWindSpeed)
+        assertEquals("12 mph", forecast.weatherWindSpeed)
         assertEquals("Localized Monday", forecast.dayOfWeek)
         assertEquals(listOf<Int?>(0), dateUtility.requestedEpochs)
     }
@@ -53,10 +53,10 @@ class CityWeatherViewModelImpTest {
 
         viewModel.checkWeather(SearchCityResult("NYC", "US", 40.0, -74.0))
 
-        assertEquals("10 mph", viewModel.weatherWindSpeed.value)
-        assertEquals("6 mi", viewModel.weatherVisibility.value)
+        assertEquals("16 km/h", viewModel.weatherWindSpeed.value)
+        assertEquals("10 km", viewModel.weatherVisibility.value)
         val forecast = viewModel.forecasts.value.first()
-        assertEquals("12 mph", forecast.weatherWindSpeed)
+        assertEquals("20 km/h", forecast.weatherWindSpeed)
     }
 
     @Test
