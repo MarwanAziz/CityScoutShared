@@ -25,6 +25,7 @@ class CityWeatherViewModelImpTest {
         assertEquals("Egypt", viewModel.country.value)
         assertEquals("Sunny", viewModel.weatherConditionText.value)
         assertEquals("//icon.png", viewModel.weatherConditionIcon.value)
+        assertEquals(1000, viewModel.weatherConditionCode.value)
         assertEquals("20°C", viewModel.weatherTemp.value)
         assertEquals("Feels like 19°C", viewModel.weatherFeelsLike.value)
         assertEquals("50%", viewModel.weatherHumidity.value)

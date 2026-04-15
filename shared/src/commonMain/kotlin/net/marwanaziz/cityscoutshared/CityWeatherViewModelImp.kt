@@ -28,6 +28,8 @@ internal class CityWeatherViewModelImp(
     override val weatherVisibility = _weatherVisibility.asStateFlow()
     private val _forecasts = MutableStateFlow<List<WeatherForecastViewModel>>(emptyList())
     override val forecasts = _forecasts.asStateFlow()
+    private val _weatherConditionCode: MutableStateFlow<Int?> = MutableStateFlow(0)
+    override val weatherConditionCode= _weatherConditionCode.asStateFlow()
 
 
     private val _weatherError = MutableStateFlow("")
@@ -57,6 +59,7 @@ internal class CityWeatherViewModelImp(
     private fun updateCurrentWeather(current: CurrentWeather?, useCelsius: Boolean, useImperial: Boolean) {
         _weatherConditionText.value = current?.condition?.text.orEmpty()
         _weatherConditionIcon.value = current?.condition?.icon
+        _weatherConditionCode.value = current?.condition?.code
         _weatherTemp.value = buildTemperatureLabel(current?.tempC, current?.tempF, useCelsius)
         _weatherFeelsLike.value = buildFeelsLikeLabel(current?.feelslikeC, current?.feelslikeF, useCelsius)
         _weatherHumidity.value = buildHumidityLabel(current?.humidity)

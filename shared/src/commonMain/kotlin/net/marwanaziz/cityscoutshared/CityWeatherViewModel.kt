@@ -13,6 +13,8 @@ interface CityWeatherViewModel {
     @NativeCoroutines
     val weatherConditionIcon: StateFlow<String?>
     @NativeCoroutines
+    val weatherConditionCode: StateFlow<Int?>
+    @NativeCoroutines
     val weatherTemp: StateFlow<String>
     @NativeCoroutines
     val weatherHumidity: StateFlow<String>
