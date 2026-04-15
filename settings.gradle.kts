@@ -1,12 +1,20 @@
 rootProject.name = "CityScoutShared"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-// When ../CityScoutRemote exists, substitute the JitPack coordinate with the local :shared module.
-val cityScoutRemoteDir = file("../CityScoutRemote")
-if (cityScoutRemoteDir.resolve("settings.gradle.kts").isFile) {
+// Prefer compiling CityScoutRemote from source (composite build). JitPack's Maven metadata for KMP
+// native targets often points at missing *.jar URLs; resolving only the POM is not enough for iOS targets.
+// Paths checked, in order:
+// - ./CityScoutRemote — git submodule or vendored copy inside this repo
+// - ../CityScoutRemote — sibling checkout (local dev) or cloned in jitpack.yml before_install
+val cityScoutRemoteDir = listOf(
+    file("CityScoutRemote"),
+    file("../CityScoutRemote"),
+).firstOrNull { it.resolve("settings.gradle.kts").isFile }
+
+if (cityScoutRemoteDir != null) {
     includeBuild(cityScoutRemoteDir) {
         dependencySubstitution {
-            substitute(module("com.github.MarwanAziz.CityScoutRemote:shared"))
+            substitute(module("com.github.MarwanAziz.CityScoutRemote:CityScoutRemote"))
                 .using(project(":shared"))
         }
     }

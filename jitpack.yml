@@ -1,7 +1,15 @@
 # https://docs.jitpack.io/building/
 # Build only the KMP library; sample composeApp is excluded via -Pjitpack=true (see settings.gradle.kts).
+#
+# JitPack does not publish Kotlin/Native artifacts at the URLs in Gradle module metadata for
+# com.github.MarwanAziz.CityScoutRemote:shared (e.g. shared-iosarm64-*.jar returns 404).
+# Clone the matching CityScoutRemote tag so settings.gradle.kts can use includeBuild (same as local dev).
 jdk:
   - openjdk17
 
+# Keep this tag in sync with cityScoutRemoteVer in gradle/libs.versions.toml
+before_install:
+  - git clone --depth 1 --branch 1.0.15 https://github.com/MarwanAziz/CityScoutRemote.git ../CityScoutRemote
+
 install:
-  - ./gradlew :sharedLib:publishToMavenLocal -Pjitpack=true -xtest -xlint --no-daemon --stacktrace
+  - ./gradlew :sharedLib:publishToMavenLocal -Pjitpack=true -xtest -xlint --no-daemon --no-configuration-cache --stacktrace

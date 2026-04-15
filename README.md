@@ -60,4 +60,6 @@ Typical flow:
 
 This repo includes [`jitpack.yml`](jitpack.yml) so JitPack uses **Java 17** and only publishes the library module (`:sharedLib`), not the sample `composeApp` (via `-Pjitpack=true` in `settings.gradle.kts`).
 
-The library depends on [CityScoutRemote](https://github.com/MarwanAziz/CityScoutRemote) from JitPack. **Recent tags publish the KMP artifact as `shared`**, not `CityScoutRemote` (for example `com.github.MarwanAziz.CityScoutRemote:shared:1.0.15`). The version catalog in this project already uses that coordinate.
+The library depends on [CityScoutRemote](https://github.com/MarwanAziz/CityScoutRemote) as `com.github.MarwanAziz.CityScoutRemote:CityScoutRemote` (see `gradle/libs.versions.toml`).
+
+**Why JitPack clones CityScoutRemote:** Resolving that dependency only from JitPack’s Maven repo often fails for Kotlin/Native (Gradle looks for platform `*.jar` URLs that do not exist). The build therefore clones a matching CityScoutRemote tag next to the project (`../CityScoutRemote`) and uses Gradle’s `includeBuild` composite build—the same approach as local development. When you bump `cityScoutRemoteVer` in `gradle/libs.versions.toml`, update the `--branch` in `jitpack.yml`’s `before_install` to the same tag.
