@@ -5,13 +5,16 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinNativecoroutines)
+    alias(libs.plugins.mavenPublish)
 }
-
+group = "com.github.MarwanAziz"
+version = findProperty("version")?.toString() ?: "0.0.0-SNAPSHOT"
 kotlin {
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
+        publishLibraryVariants("release")
     }
     val xcframework = XCFramework("CityScoutShared")
     listOf(
@@ -40,7 +43,7 @@ kotlin {
 }
 
 android {
-    namespace = "net.marwanaziz.cityscoutshared.shared"
+    namespace = "net.marwanaziz.cityscoutshared.CityScoutShared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -48,5 +51,13 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+publishing {
+    publications {
+        withType<MavenPublication> {
+            artifactId = "CityScoutShared"
+        }
     }
 }
