@@ -7,7 +7,8 @@ val cityScoutRemoteDir = file("../CityScoutRemote")
 if (cityScoutRemoteDir.resolve("settings.gradle.kts").isFile) {
     includeBuild(cityScoutRemoteDir) {
         dependencySubstitution {
-            substitute(module("com.github.MarwanAziz.CityScoutRemote:CityScoutRemote")).using(project(":shared"))
+            substitute(module("com.github.MarwanAziz.CityScoutRemote:CityScoutRemote"))
+                .using(project(":shared"))
         }
     }
 }
@@ -42,4 +43,5 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":shared")
+include(":sharedLib")
+project(":sharedLib").projectDir = file("shared")
