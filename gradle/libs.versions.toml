@@ -36,7 +36,8 @@ compose-material3 = { module = "org.jetbrains.compose.material3:material3", vers
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
-cityScoutRemote = { module = "com.github.MarwanAziz.CityScoutRemote:CityScoutRemote", version.ref = "cityScoutRemoteVer" }
+# JitPack publishes the KMP module as artifactId "shared" (not "CityScoutRemote") for recent tags.
+cityScoutRemote = { module = "com.github.MarwanAziz.CityScoutRemote:shared", version.ref = "cityScoutRemoteVer" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinNativecoroutinesCore = { module = "com.rickclephas.kmp:kmp-nativecoroutines-core", version.ref = "nativecoroutines" }
 

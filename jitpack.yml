@@ -1,0 +1,7 @@
+# https://docs.jitpack.io/building/
+# Build only the KMP library; sample composeApp is excluded via -Pjitpack=true (see settings.gradle.kts).
+jdk:
+  - openjdk17
+
+install:
+  - ./gradlew :sharedLib:publishToMavenLocal -Pjitpack=true -xtest -xlint --no-daemon --stacktrace

@@ -55,3 +55,9 @@ Typical flow:
   ```shell
   ./gradlew :sharedLib:test
   ```
+
+## JitPack
+
+This repo includes [`jitpack.yml`](jitpack.yml) so JitPack uses **Java 17** and only publishes the library module (`:sharedLib`), not the sample `composeApp` (via `-Pjitpack=true` in `settings.gradle.kts`).
+
+The library depends on [CityScoutRemote](https://github.com/MarwanAziz/CityScoutRemote) from JitPack. **Recent tags publish the KMP artifact as `shared`**, not `CityScoutRemote` (for example `com.github.MarwanAziz.CityScoutRemote:shared:1.0.15`). The version catalog in this project already uses that coordinate.
