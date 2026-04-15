@@ -171,6 +171,8 @@ __attribute__((swift_name("CityWeatherViewModel")))
 @property (readonly) BOOL loadingValue __attribute__((swift_name("loadingValue")));
 @property (readonly) CSSKotlinUnit *(^(^title)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("title")));
 @property (readonly) NSString *titleValue __attribute__((swift_name("titleValue")));
+@property (readonly) CSSKotlinUnit *(^(^weatherConditionCode)(CSSKotlinUnit *(^)(CSSInt * _Nullable, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherConditionCode")));
+@property (readonly) CSSInt * _Nullable weatherConditionCodeValue __attribute__((swift_name("weatherConditionCodeValue")));
 @property (readonly) CSSKotlinUnit *(^(^weatherConditionIcon)(CSSKotlinUnit *(^)(NSString * _Nullable, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherConditionIcon")));
 @property (readonly) NSString * _Nullable weatherConditionIconValue __attribute__((swift_name("weatherConditionIconValue")));
 @property (readonly) CSSKotlinUnit *(^(^weatherConditionText)(CSSKotlinUnit *(^)(NSString *, CSSKotlinUnit *(^)(void), CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError * _Nullable, CSSKotlinUnit *), CSSKotlinUnit *(^)(NSError *, CSSKotlinUnit *)))(void) __attribute__((swift_name("weatherConditionText")));
