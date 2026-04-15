@@ -1,39 +1,57 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# CityScoutShared
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+`CityScoutShared` is a Kotlin Multiplatform library that provides shared city search and weather forecast logic for Android and iOS apps.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+It exposes:
 
-* [/shared](./shared/src) is for the code that will be shared between all targets in the project.
-  The most important subfolder is [commonMain](./shared/src/commonMain/kotlin). If preferred, you
-  can add code to the platform-specific folders here too.
+- `SearchCityViewModel` to search for cities.
+- `CityWeatherViewModel` to fetch current weather and forecast for a selected city.
+- Factory helpers through `CityScoutFactory` to create `Remote`, `SearchCityViewModel`, and `CityWeatherViewModel`.
 
-### Build and Run Android Application
+## API Keys
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
+This library requires two API keys:
+
+- **RapidAPI key** for city search (free plan available): [rapidapi.com](https://rapidapi.com/)
+- **WeatherAPI key** for weather forecast (free plan available): [weatherapi.com](https://www.weatherapi.com/)
+
+Set keys before making requests:
+
+```kotlin
+import net.marwanaziz.cityscoutshared.RemoteKeys
+
+RemoteKeys.rapidApiKey = "<YOUR_RAPIDAPI_KEY>"
+RemoteKeys.weatherApiKey = "<YOUR_WEATHERAPI_KEY>"
+```
+
+## Basic Usage
+
+```kotlin
+import net.marwanaziz.cityscoutshared.CityScoutFactory
+import net.marwanaziz.cityscoutshared.RemoteKeys
+
+RemoteKeys.rapidApiKey = "<YOUR_RAPIDAPI_KEY>"
+RemoteKeys.weatherApiKey = "<YOUR_WEATHERAPI_KEY>"
+
+val remote = CityScoutFactory.createRemote(RemoteKeys)
+val searchViewModel = CityScoutFactory.creatSearchCityViewModel(remote)
+val weatherViewModel = CityScoutFactory.createWeatherViewModel(remote)
+```
+
+Typical flow:
+
+1. Call `searchViewModel.searchCity("Cairo")`.
+2. Read `searchViewModel.searchCityResult`.
+3. Pick a city and call `weatherViewModel.checkWeather(selectedCity)`.
+4. Observe weather state from `weatherViewModel` (`weatherTemp`, `weatherConditionText`, `weatherConditionCode`, `forecasts`, etc.).
+
+## Build
+
+- Build full project:
   ```shell
-  ./gradlew :composeApp:assembleDebug
+  ./gradlew build
   ```
-- on Windows
+- Run shared module tests:
   ```shell
-  .\gradlew.bat :composeApp:assembleDebug
+  ./gradlew :sharedLib:test
   ```
-
-### Build and Run iOS Application
-
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
